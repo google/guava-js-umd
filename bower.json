@@ -1,0 +1,27 @@
+{
+  "name": "guava-js",
+  "homepage": "https://github.com/nerdynick/guava-js",
+  "authors": [
+    "nerdynick <nerdynick@gmail.com>"
+  ],
+  "description": "A Javascript lib supplying a lot of the great functionality Java devs are used to from Guava",
+  "main": "",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "Guava",
+    "Javascript",
+    "JS",
+    "Utils",
+    "Java"
+  ],
+  "license": "Apache 2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

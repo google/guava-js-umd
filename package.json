@@ -1,0 +1,14 @@
+{
+	"name": "guava-js",
+	"version":"0.1.0",
+	"devDependencies": {
+		"grunt": "*",
+		"grunt-cli": "*",
+		"grunt-contrib-uglify": "*",
+		"grunt-contrib-concat": "*",
+		"grunt-contrib-jasmine": "*"
+	},
+	"scripts": {
+		"test": "grunt test"
+	}
+}
