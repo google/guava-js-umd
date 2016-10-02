@@ -5,70 +5,119 @@ GuavaJS.Strings.CharMatcher = GuavaJS.Strings.CharMatcher || (function(){
 	var Strings = GuavaJS.Strings;
 	var isNull = GuavaJS.isNull;
 	
-	var Is = (function(char){
-		var _self = this;
+	var _matchesAnyOf = function(matcher, str){
+		for(i=0; i<str.length; i++){
+			if(matcher.matches(str.charAt(i))){
+				return true;
+			}
+		}
 		
+		return false;
+	}
+	var _matchesNoneOf = function(matcher, str){
+		return !_matchesAnyOf(matcher, str);
+	}
+	var _matchesAllOf = function(matcher, str){
+		for(i=0; i<str.length; i++){
+			if(!matcher.matches(str.charAt(i))){
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	var Is = (function(char){
 		return {
 			matches: function(c){
 				return char == c;
 			},
-			negate: function(){return Negated(_self);}
+			matchesAnyOf: function(string){return _matchesAnyOf(this, string);},
+			matchesNoneOf: function(string){return _matchesNoneOf(this, string);},
+			matchesAllOf: function(string){return _matchesAllOf(this, string);},
+			negate: function(){return Negated(this);}
 		}
 	});
 	var IsEither = (function(char1, char2){
-		var _self = this;
-		
 		return {
 			matches: function(char){
 				return char1 == char || char2 == char;
 			},
-			negate: function(){return Negated(_self);}
+			matchesAnyOf: function(string){return _matchesAnyOf(this, string);},
+			matchesNoneOf: function(string){return _matchesNoneOf(this, string);},
+			matchesAllOf: function(string){return _matchesAllOf(this, string);},
+			negate: function(){return Negated(this);}
 		}
 	});
 	
 	var AnyOf = (function(values){
-		var _self = this;
-		
 		var matches = function(char){
 			return Strings.contains(values, char);
 		}
 		
 		return {
 			matches: matches,
-			negate: function(){return Negated(_self);}
+			matchesAnyOf: function(string){return _matchesAnyOf(this, string);},
+			matchesNoneOf: function(string){return _matchesNoneOf(this, string);},
+			matchesAllOf: function(string){return _matchesAllOf(this, string);},
+			negate: function(){return Negated(this);}
 		}
 	});
 	
 	var Negated = (function(matcher){
-		var _self = this;
 		return {
 			matches: function(char){
 				return !matcher.matches(char);
 			},
-			negate: function(){return Negated(_self);}
+			matchesAnyOf: function(string){return _matchesAnyOf(this, string);},
+			matchesNoneOf: function(string){return _matchesNoneOf(this, string);},
+			matchesAllOf: function(string){return _matchesAllOf(this, string);},
+			negate: function(){return Negated(this);}
 		}
 	});
 	
 	var Or = (function(matcher1, matcher2){
-		var _self = this;
 		return {
 			matches: function(char){
 				return matcher1.matches(char) || matcher2.matches(char);
 			},
-			negate: function(){return Negated(_self);}
+			matchesAnyOf: function(string){return _matchesAnyOf(this, string);},
+			matchesNoneOf: function(string){return _matchesNoneOf(this, string);},
+			matchesAllOf: function(string){return _matchesAllOf(this, string);},
+			negate: function(){return Negated(this);}
 		}
 	});
 	var And = (function(matcher1, matcher2){
-		var _self = this;
 		return {
 			matches: function(char){
 				return matcher1.matches(char) && matcher2.matches(char);
 			},
-			negate: function(){return Negated(_self);}
+			matchesAnyOf: function(string){return _matchesAnyOf(this, string);},
+			matchesNoneOf: function(string){return _matchesNoneOf(this, string);},
+			matchesAllOf: function(string){return _matchesAllOf(this, string);},
+			negate: function(){return Negated(this);}
+		}
+	});
+	
+	var InRange = (function(startInclusive, endInclusive){
+		var sICode = startInclusive.charCodeAt(0);
+		var eICode = endInclusive.charCodeAt(0);
+		
+		return {
+			matches: function(char){
+				var code = char.charCodeAt(0);
+				
+				return sICode <= code && code <= eICode;
+			},
+			matchesAnyOf: function(string){return _matchesAnyOf(this, string);},
+			matchesNoneOf: function(string){return _matchesNoneOf(this, string);},
+			matchesAllOf: function(string){return _matchesAllOf(this, string);},
+			negate: function(){return Negated(this);}
 		}
 	});
 	
 	var _anyOf = function(values){
+		//This is a performance util function
 		if(!isNull(values)){
 			if(values.length == 1){
 				return Is(values);
@@ -82,8 +131,9 @@ GuavaJS.Strings.CharMatcher = GuavaJS.Strings.CharMatcher || (function(){
 	
 	return {
 		anyOf: _anyOf,
-		noneOf: function(values){return anyOf(values).negate();},
-		and: function(matcher1, matcher2){return And(matcher1, matcher2);},
-		or: function(matcher1, matcher2){return Or(matcher1, matcher2);}
+		noneOf: function(values){return _anyOf(values).negate();},
+		and: And,
+		or: Or,
+		inRange: InRange
 	}
-});
+})();
