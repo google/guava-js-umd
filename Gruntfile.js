@@ -20,7 +20,7 @@ module.exports = function(grunt) {
 					specs: ["src/test/javascript/GuavaJS.strings.spec.js"]
 				}
 			},
-			strings: {
+			stringsCharmatcher: {
 				src: [
 				      "src/main/javascript/GuavaJS.js", 
 				      "src/main/javascript/GuavaJS.strings.js", 
@@ -28,6 +28,17 @@ module.exports = function(grunt) {
 				     ],
 				options: {
 					specs: ["src/test/javascript/GuavaJS.strings.charmatcher.spec.js"]
+				}
+			},
+			stringsSplitter: {
+				src: [
+				      "src/main/javascript/GuavaJS.js", 
+				      "src/main/javascript/GuavaJS.strings.js", 
+				      "src/main/javascript/GuavaJS.strings.charmatcher.js", 
+				      "src/main/javascript/GuavaJS.strings.splitter.js"
+				     ],
+				options: {
+					specs: ["src/test/javascript/GuavaJS.strings.splitter.spec.js"]
 				}
 			}
 		}

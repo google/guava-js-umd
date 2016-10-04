@@ -33,11 +33,16 @@ GuavaJS.Strings = GuavaJS.Strings || (function(){
 		return false;
 	}
 	
+	var trim = function(string){
+		return nullToEmpty(string).trim();
+	}
+	
 	return {
 		empty: emptyString,
 		isNullOrEmpty: isNullOrEmpty,
 		nullTo: nullTo,
 		nullToEmpty: nullToEmpty,
-		contains: contains
+		contains: contains,
+		trim: trim
 	}
 })();
