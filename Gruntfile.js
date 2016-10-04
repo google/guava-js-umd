@@ -40,6 +40,16 @@ module.exports = function(grunt) {
 				options: {
 					specs: ["src/test/javascript/GuavaJS.strings.splitter.spec.js"]
 				}
+			},
+			stringsJoiner: {
+				src: [
+				      "src/main/javascript/GuavaJS.js", 
+				      "src/main/javascript/GuavaJS.strings.js",
+				      "src/main/javascript/GuavaJS.strings.joiner.js"
+				     ],
+				options: {
+					specs: ["src/test/javascript/GuavaJS.strings.joiner.spec.js"]
+				}
 			}
 		}
 	});
