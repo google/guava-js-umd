@@ -8,12 +8,17 @@ var GuavaJS = GuavaJS || (function(){
 	}
 	
 	var isString = function(str){
-		return typeof(str) == "string" || str instanceof String;
+		return (typeofstr == "string" || str instanceof String);
+	}
+	
+	var isObject = function(obj){
+		return !isNull(obj) && typeof obj == "object";
 	}
 	
 	return {
 		isNull:isNull,
 		isArray: isArray,
-		isString: isString
+		isString: isString,
+		isObject: isObject
 	}
 })();

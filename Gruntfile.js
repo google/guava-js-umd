@@ -50,6 +50,15 @@ module.exports = function(grunt) {
 				options: {
 					specs: ["src/test/javascript/GuavaJS.strings.joiner.spec.js"]
 				}
+			},
+			collectIterables: {
+				src: [
+				      "src/main/javascript/GuavaJS.js", 
+				      "src/main/javascript/GuavaJS.collect.iterables.js"
+				     ],
+				options: {
+					specs: ["src/test/javascript/GuavaJS.collect.iterables.spec.js"]
+				}
 			}
 		}
 	});
