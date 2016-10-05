@@ -8,7 +8,7 @@ var GuavaJS = GuavaJS || (function(){
 	}
 	
 	var isString = function(str){
-		return (typeofstr == "string" || str instanceof String);
+		return (typeof str == "string" || str instanceof String);
 	}
 	
 	var isObject = function(obj){
