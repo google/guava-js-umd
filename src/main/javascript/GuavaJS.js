@@ -15,10 +15,20 @@ var GuavaJS = GuavaJS || (function(){
 		return !isNull(obj) && typeof obj == "object";
 	}
 	
+	var isNumber = function(obj){
+		return !isNull(obj) && typeof obj == "number";
+	}
+	
+	var isBoolean = function(obj){
+		return !isNull(obj) && typeof obj == "boolean";
+	}
+	
 	return {
 		isNull:isNull,
 		isArray: isArray,
 		isString: isString,
-		isObject: isObject
+		isObject: isObject,
+		isNumber: isNumber,
+		isBoolean: isBoolean
 	}
 })();

@@ -14,6 +14,14 @@ GuavaJS.Booleans = GuavaJS.Booleans || (function(){
 		return false;
 	}
 	
+	var fromInt = function(int){
+		if(!isNull(int) && int >= 1){
+			return true;
+		}
+		
+		return false;
+	}
+	
 	var toString = function(bool){
 		if(bool){
 			return 't';
@@ -21,8 +29,18 @@ GuavaJS.Booleans = GuavaJS.Booleans || (function(){
 		return 'f';
 	}
 	
+	var toInt = function(bool){
+		if(!isNull(bool) && bool){
+			return 1;
+		}
+		
+		return 0;
+	}
+	
 	return {
 		toString: toString,
-		fromString: fromString
+		toInt: toInt,
+		fromString: fromString,
+		fromInt: fromInt
 	}
 })();
