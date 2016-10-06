@@ -65,6 +65,17 @@ module.exports = function(grunt) {
 				options: {
 					specs: ["src/test/javascript/GuavaJS.numbers.spec.js"]
 				}
+			},
+			futures: {
+				src: [
+				      "src/main/javascript/GuavaJS.js", 
+				      "src/main/javascript/GuavaJS.collect.iterables.js", 
+				      "src/main/javascript/GuavaJS.concurrent.js", 
+				      "src/main/javascript/GuavaJS.concurrent.futures.js"
+				     ],
+				options: {
+					specs: ["src/test/javascript/GuavaJS.concurrent.futures.spec.js"]
+				}
 			}
 		}
 	});
