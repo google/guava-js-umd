@@ -1,6 +1,6 @@
 //Requires GuavaJS.js
-
-GuavaJS.Iterables = GuavaJS.Iterables || (function(){
+//Requires GuavaJS.collect.js
+GuavaJS.Collect.Iterables = GuavaJS.Collect.Iterables || (function(){
 	var isNull = GuavaJS.isNull;
 	var isArray = GuavaJS.isArray;
 	var isObject = GuavaJS.isObject;

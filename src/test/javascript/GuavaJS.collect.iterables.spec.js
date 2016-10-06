@@ -1,5 +1,5 @@
 describe("Iterables", function(){
-	var Iterables = GuavaJS.Iterables;
+	var Iterables = GuavaJS.Collect.Iterables;
 	
 	describe("size", function(){
 		it("Arrays", function(){

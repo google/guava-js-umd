@@ -1,8 +1,9 @@
 //Requires GuavaJS.js
+//Requires GuavaJS.collect.js
 //Requires GuavaJS.collect.iterables.js
 
 GuavaJS.Concurrent.Futures = GuavaJS.Concurrent.Futures || (function(){
-	var Iterables = GuavaJS.Iterables;
+	var Iterables = GuavaJS.Collect.Iterables;
 	
 	var _Future = (function(){
 		var _self = this;

@@ -53,7 +53,8 @@ module.exports = function(grunt) {
 			},
 			collectIterables: {
 				src: [
-				      "src/main/javascript/GuavaJS.js", 
+				      "src/main/javascript/GuavaJS.js",
+				      "src/main/javascript/GuavaJS.collect.js",
 				      "src/main/javascript/GuavaJS.collect.iterables.js"
 				     ],
 				options: {
@@ -69,6 +70,7 @@ module.exports = function(grunt) {
 			futures: {
 				src: [
 				      "src/main/javascript/GuavaJS.js", 
+				      "src/main/javascript/GuavaJS.collect.js",
 				      "src/main/javascript/GuavaJS.collect.iterables.js", 
 				      "src/main/javascript/GuavaJS.concurrent.js", 
 				      "src/main/javascript/GuavaJS.concurrent.futures.js"
