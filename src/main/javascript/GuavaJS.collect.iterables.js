@@ -23,16 +23,26 @@ GuavaJS.Collect.Iterables = GuavaJS.Collect.Iterables || (function(){
 		return (size(iterable) <= 0);
 	}
 	
-	var contains = function(iterable, key){
+	var indexOf = function(iterable, val){
     	if(isNullOrEmpty(iterable)){
-    		return false;
+    		return -1;
     	} else if(isArray(iterable)){
-    		return (iterable.indexOf(key) > -1);
-    	} else {
-    		return (iterable.hasOwnProperty(key) && !isNull(iterable[key]));
+    		return iterable.indexOf(val);
+    	} else if(isObject(iterable)){
+    		var keys = Object.keys(iterable);
+    		for(var i=0; i<keys.length; i++){
+    			var key = keys[i];
+    			if(iterable[key] == val){
+    				return key;
+    			}
+    		}
     	}
     	
-    	return false;
+    	return -1;
+	}
+	
+	var contains = function(iterable, val){
+    	return (indexOf(val) > -1);
     }
 	
 	var getFirst = function(iterable, def){
@@ -109,6 +119,7 @@ GuavaJS.Collect.Iterables = GuavaJS.Collect.Iterables || (function(){
 		contains: contains,
 		getFirst: getFirst,
 		getLast: getLast,
-		iterate: iterate
+		iterate: iterate,
+		indexOf: indexOf
 	}
 })();
