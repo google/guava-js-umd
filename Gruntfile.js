@@ -77,73 +77,25 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-//		concat : {
-//			options : {
-//				separator : '\n',
-//				banner : "/**\n"
-//						+ "* GuavaJS\n"
-//						+ '* Date : <%= grunt.template.today("dd-mm-yyyy h:MM:ss TT") %> ' + "\n"
-//						+ "*/\n"
-//			},
-//			logging: {
-//				src: logginSrc,
-//				dest: 'stage/GuavaJS.logging.only.js'
-//			},
-//			strings: {
-//				src: stringSrc,
-//				dest: 'stage/GuavaJS.strings.only.js'
-//			},
-//			stringsCharmatcher: {
-//				src: stringCharMatcherSrc,
-//				dest: 'stage/GuavaJS.strings.charmatcher.only.js'
-//			},
-//			stringsSplitter: {
-//				src: stringSplitterSrc,
-//				dest: 'stage/GuavaJS.strings.splitter.only.js'
-//			},
-//			stringsJoiner: {
-//				src: stringJoinerSrc,
-//				dest: 'stage/GuavaJS.strings.joiner.only.js'
-//			},
-//			collectIterables: {
-//				src: collectionIterableSrc,
-//				dest: 'stage/GuavaJS.collect.iterables.only.js'
-//			},
-//			numbers: {
-//				src: numbersSrc,
-//				dest: 'stage/GuavaJS.numbers.only.js'
-//			},
-//			booleans: {
-//				src: booleansSrc,
-//				dest: 'stage/GuavaJS.booleans.only.js'
-//			},
-//			futures: {
-//				src: futuresSrc,
-//				dest: 'stage/GuavaJS.futures.only.js'
-//			}
-//		},
-//		uglify : {
-//			sections : {
-//				files : {
-//					'build/GuavaJS.logging.only.min.js' : 'stage/GuavaJS.logging.only.js',
-//					'build/GuavaJS.strings.only.min.js' : 'stage/GuavaJS.strings.only.js',
-//					'build/GuavaJS.strings.charmatcher.only.min.js' : 'stage/GuavaJS.strings.charmatcher.only.js',
-//					'build/GuavaJS.strings.splitter.only.min.js' : 'stage/GuavaJS.strings.splitter.only.js',
-//					'build/GuavaJS.strings.joiner.only.min.js' : 'stage/GuavaJS.strings.joiner.only.js',
-//					'build/GuavaJS.collect.iterables.only.min.js' : 'stage/GuavaJS.collect.iterables.only.js',
-//					'build/GuavaJS.numbers.only.min.js' : 'stage/GuavaJS.numbers.only.js',
-//					'build/GuavaJS.booleans.only.min.js' : 'stage/GuavaJS.booleans.only.js',
-//					'build/GuavaJS.futures.only.min.js' : 'stage/GuavaJS.futures.only.js'
-//				}
-//			}
-//		}
+		uglify : {
+			core_files : {
+				files : [{
+					expand: true,
+					src: 'src/main/javascript/*.js',
+					dest: 'build',
+					ext: '.min.js',
+					extDot: 'last',
+					flatten: true
+				}]
+			}
+		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jasmine');
-	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 
-	grunt.registerTask('default', ['jasmine', 'concat', 'uglify']);
-	grunt.registerTask('build', ['jasmine', 'concat', 'uglify']);
+	grunt.registerTask('default', ['jasmine', 'uglify']);
+	grunt.registerTask('build', ['jasmine', 'uglify']);
+	grunt.registerTask('build-notest', ['uglify']);
 	grunt.registerTask('test', ['jasmine']);
 }
