@@ -4,14 +4,15 @@
 GuavaJS.Collect.Multimap = GuavaJS.Collect.Multimap || {};
 GuavaJS.Collect.Multimap._ = GuavaJS.Collect.Multimap._ || (function(createNewFunc){
 	var Iterables = GuavaJS.Collect.Iterables;
+	var isNull = GuavaJS.isNull;
 	
 	var values = {};
 	
 	var put = function(key, val){
 		var values = get(key);
-		if(values.hasOwnProperty('push')){
+		if(typeof values.push === 'function'){
 			values.push(val);
-		} else if(values.hasOwnProperty('put')){
+		} else if(typeof values.put === 'function'){
 			values.put(val);
 		} else {
 			throw "Now way to push or put with sub collection";
@@ -20,11 +21,11 @@ GuavaJS.Collect.Multimap._ = GuavaJS.Collect.Multimap._ || (function(createNewFu
 	
 	var putAll = function(key, iterable){
 		var values = get(key);
-		if(values.hasOwnProperty('push')){
+		if(typeof values.push === 'function'){
 			Iterables.iterate(iterable, function(val){
 				values.push(val);
 			});
-		} else if(values.hasOwnProperty('put')){
+		} else if(typeof values.put === 'function'){
 			Iterables.iterate(iterable, function(val){
 				values.put(val);
 			});

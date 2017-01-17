@@ -1,85 +1,142 @@
 module.exports = function(grunt) {
+	var srcDir = "src/main/javascript/";
+	var testDir = "src/test/javascript/";
+	
+	var logginSrc = [srcDir+"GuavaJS.js", srcDir+"GuavaJS.logging.js"];
+	var stringSrc = [srcDir+"GuavaJS.js", srcDir+"GuavaJS.strings.js"];
+	var stringCharMatcherSrc = [srcDir+"GuavaJS.js", srcDir+"GuavaJS.strings.js", srcDir+"GuavaJS.strings.charmatcher.js"];
+	var stringSplitterSrc = [srcDir+"GuavaJS.js", srcDir+"GuavaJS.strings.js", srcDir+"GuavaJS.strings.charmatcher.js", srcDir+"GuavaJS.strings.splitter.js"];
+	var stringJoinerSrc = [srcDir+"GuavaJS.js", srcDir+"GuavaJS.strings.js", srcDir+"GuavaJS.strings.joiner.js"];
+	var collectionIterableSrc = [srcDir+"GuavaJS.js", srcDir+"GuavaJS.collect.js", srcDir+"GuavaJS.collect.iterables.js"];
+	var collectionMultimapSrc = [srcDir+"GuavaJS.js", srcDir+"GuavaJS.collect.js", srcDir+"GuavaJS.collect.iterables.js", srcDir+"GuavaJS.collect.multimap.js"];
+	var numbersSrc = [srcDir+"GuavaJS.js", srcDir+"GuavaJS.numbers.js"];
+	var booleansSrc = [srcDir+"GuavaJS.js", srcDir+"GuavaJS.booleans.js"];
+	var futuresSrc = [srcDir+"GuavaJS.js", srcDir+"GuavaJS.collect.js", srcDir+"GuavaJS.collect.iterables.js", srcDir+"GuavaJS.concurrent.js", srcDir+"GuavaJS.concurrent.futures.js"];
+	
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		jasmine: {
 			core: {
-				src: ["src/main/javascript/GuavaJS.js"],
+				src: [srcDir+"GuavaJS.js"],
 				options: {
-					specs: ["src/test/javascript/GuavaJS.spec.js"]
+					specs: [testDir+"GuavaJS.spec.js"]
 				}
 			},
 			logging: {
-				src: ["src/main/javascript/GuavaJS.js", "src/main/javascript/GuavaJS.logging.js"],
+				src: logginSrc,
 				options: {
-					specs: ["src/test/javascript/GuavaJS.logging.spec.js"]
+					specs: [testDir+"GuavaJS.logging.spec.js"]
 				}
 			},
 			strings: {
-				src: ["src/main/javascript/GuavaJS.js", "src/main/javascript/GuavaJS.strings.js"],
+				src: stringSrc,
 				options: {
-					specs: ["src/test/javascript/GuavaJS.strings.spec.js"]
+					specs: [testDir+"GuavaJS.strings.spec.js"]
 				}
 			},
 			stringsCharmatcher: {
-				src: [
-				      "src/main/javascript/GuavaJS.js", 
-				      "src/main/javascript/GuavaJS.strings.js", 
-				      "src/main/javascript/GuavaJS.strings.charmatcher.js"
-				     ],
+				src: stringCharMatcherSrc,
 				options: {
-					specs: ["src/test/javascript/GuavaJS.strings.charmatcher.spec.js"]
+					specs: [testDir+"GuavaJS.strings.charmatcher.spec.js"]
 				}
 			},
 			stringsSplitter: {
-				src: [
-				      "src/main/javascript/GuavaJS.js", 
-				      "src/main/javascript/GuavaJS.strings.js", 
-				      "src/main/javascript/GuavaJS.strings.charmatcher.js", 
-				      "src/main/javascript/GuavaJS.strings.splitter.js"
-				     ],
+				src: stringSplitterSrc,
 				options: {
-					specs: ["src/test/javascript/GuavaJS.strings.splitter.spec.js"]
+					specs: [testDir+"GuavaJS.strings.splitter.spec.js"]
 				}
 			},
 			stringsJoiner: {
-				src: [
-				      "src/main/javascript/GuavaJS.js", 
-				      "src/main/javascript/GuavaJS.strings.js",
-				      "src/main/javascript/GuavaJS.strings.joiner.js"
-				     ],
+				src: stringJoinerSrc,
 				options: {
-					specs: ["src/test/javascript/GuavaJS.strings.joiner.spec.js"]
+					specs: [testDir+"GuavaJS.strings.joiner.spec.js"]
 				}
 			},
 			collectIterables: {
-				src: [
-				      "src/main/javascript/GuavaJS.js",
-				      "src/main/javascript/GuavaJS.collect.js",
-				      "src/main/javascript/GuavaJS.collect.iterables.js"
-				     ],
+				src: collectionIterableSrc,
 				options: {
-					specs: ["src/test/javascript/GuavaJS.collect.iterables.spec.js"]
+					specs: [testDir+"GuavaJS.collect.iterables.spec.js"]
+				}
+			},
+			collectMultimap: {
+				src: collectionMultimapSrc,
+				options: {
+					specs: [testDir+"GuavaJS.collect.multimap.spec.js"]
 				}
 			},
 			numbers: {
-				src: ["src/main/javascript/GuavaJS.js", "src/main/javascript/GuavaJS.numbers.js"],
+				src: numbersSrc,
 				options: {
-					specs: ["src/test/javascript/GuavaJS.numbers.spec.js"]
+					specs: [testDir+"GuavaJS.numbers.spec.js"]
 				}
 			},
 			futures: {
-				src: [
-				      "src/main/javascript/GuavaJS.js", 
-				      "src/main/javascript/GuavaJS.collect.js",
-				      "src/main/javascript/GuavaJS.collect.iterables.js", 
-				      "src/main/javascript/GuavaJS.concurrent.js", 
-				      "src/main/javascript/GuavaJS.concurrent.futures.js"
-				     ],
+				src: futuresSrc,
 				options: {
-					specs: ["src/test/javascript/GuavaJS.concurrent.futures.spec.js"]
+					specs: [testDir+"GuavaJS.concurrent.futures.spec.js"]
 				}
 			}
-		}
+		},
+//		concat : {
+//			options : {
+//				separator : '\n',
+//				banner : "/**\n"
+//						+ "* GuavaJS\n"
+//						+ '* Date : <%= grunt.template.today("dd-mm-yyyy h:MM:ss TT") %> ' + "\n"
+//						+ "*/\n"
+//			},
+//			logging: {
+//				src: logginSrc,
+//				dest: 'stage/GuavaJS.logging.only.js'
+//			},
+//			strings: {
+//				src: stringSrc,
+//				dest: 'stage/GuavaJS.strings.only.js'
+//			},
+//			stringsCharmatcher: {
+//				src: stringCharMatcherSrc,
+//				dest: 'stage/GuavaJS.strings.charmatcher.only.js'
+//			},
+//			stringsSplitter: {
+//				src: stringSplitterSrc,
+//				dest: 'stage/GuavaJS.strings.splitter.only.js'
+//			},
+//			stringsJoiner: {
+//				src: stringJoinerSrc,
+//				dest: 'stage/GuavaJS.strings.joiner.only.js'
+//			},
+//			collectIterables: {
+//				src: collectionIterableSrc,
+//				dest: 'stage/GuavaJS.collect.iterables.only.js'
+//			},
+//			numbers: {
+//				src: numbersSrc,
+//				dest: 'stage/GuavaJS.numbers.only.js'
+//			},
+//			booleans: {
+//				src: booleansSrc,
+//				dest: 'stage/GuavaJS.booleans.only.js'
+//			},
+//			futures: {
+//				src: futuresSrc,
+//				dest: 'stage/GuavaJS.futures.only.js'
+//			}
+//		},
+//		uglify : {
+//			sections : {
+//				files : {
+//					'build/GuavaJS.logging.only.min.js' : 'stage/GuavaJS.logging.only.js',
+//					'build/GuavaJS.strings.only.min.js' : 'stage/GuavaJS.strings.only.js',
+//					'build/GuavaJS.strings.charmatcher.only.min.js' : 'stage/GuavaJS.strings.charmatcher.only.js',
+//					'build/GuavaJS.strings.splitter.only.min.js' : 'stage/GuavaJS.strings.splitter.only.js',
+//					'build/GuavaJS.strings.joiner.only.min.js' : 'stage/GuavaJS.strings.joiner.only.js',
+//					'build/GuavaJS.collect.iterables.only.min.js' : 'stage/GuavaJS.collect.iterables.only.js',
+//					'build/GuavaJS.numbers.only.min.js' : 'stage/GuavaJS.numbers.only.js',
+//					'build/GuavaJS.booleans.only.min.js' : 'stage/GuavaJS.booleans.only.js',
+//					'build/GuavaJS.futures.only.min.js' : 'stage/GuavaJS.futures.only.js'
+//				}
+//			}
+//		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jasmine');
