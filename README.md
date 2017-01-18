@@ -6,6 +6,9 @@ A Javascript library that supplies a lot of the same great functionality and too
 ## Installing GuavaJS
 GuavaJS is setup to allow for the use of Bower. Each versioned release will be tagged to allow you to use the version of your choosing.
 
+## Javascript compatability
+GuavaJS is designed to be backward compatable with older browsers but also intends to allow for EC6 features as long as doing so doesn't create issues with the legacy support. As some of the goals is to be a sort of polyfill collection minus the amount of overhead to do so.
+
 ### Hows it packaged?
 
 

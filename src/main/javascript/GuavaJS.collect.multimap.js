@@ -74,7 +74,7 @@ GuavaJS.Collect.Multimap._ = GuavaJS.Collect.Multimap._ || (function(createNewFu
 		return val;
 	}
 	
-	return {
+	var _ = {
 		get: get,
 		clear: clear,
 		remove: remove,
@@ -83,8 +83,13 @@ GuavaJS.Collect.Multimap._ = GuavaJS.Collect.Multimap._ || (function(createNewFu
 		push: put,
 		putAll: putAll,
 		pushAll: putAll,
-		size: function(){return Iterables.size(values);}
+		size: function(){return Iterables.size(values);},
+		forEach: function(callback){Iterables.iterate(values, callback);}
 	}
+	
+	//TODO: Add Symbol.iterator declaration
+	
+	return _;
 });
 
 GuavaJS.Collect.Multimap.ListMultimap = GuavaJS.Collect.Multimap.ListMultimap || (function(){

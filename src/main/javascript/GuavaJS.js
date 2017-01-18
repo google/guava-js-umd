@@ -11,6 +11,9 @@ var GuavaJS = GuavaJS || (function(){
 		return (typeof str == "string" || str instanceof String);
 	}
 	
+	var isFunction = function(obj){
+		return !isNull(obj) && typeof obj == "function";
+	}
 	var isObject = function(obj){
 		return !isNull(obj) && typeof obj == "object";
 	}
@@ -63,6 +66,7 @@ var GuavaJS = GuavaJS || (function(){
 		isObject: isObject,
 		isNumber: isNumber,
 		isBoolean: isBoolean,
+		isFunction: isFunction,
 		
 		randomInt: randomInt,
 		randomIntExclusive: randomIntExclusive,

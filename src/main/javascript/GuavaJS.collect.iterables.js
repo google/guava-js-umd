@@ -4,6 +4,7 @@ GuavaJS.Collect.Iterables = GuavaJS.Collect.Iterables || (function(){
 	var isNull = GuavaJS.isNull;
 	var isArray = GuavaJS.isArray;
 	var isObject = GuavaJS.isObject;
+	var isFunction = GuavaJS.isFunction;
 	
 	var size = function(iterable){
 		if(!isNull(iterable)){
@@ -82,7 +83,9 @@ GuavaJS.Collect.Iterables = GuavaJS.Collect.Iterables || (function(){
 	
 	var iterate = function(iterable, callback){
 		if(!isNullOrEmpty(iterable)){
-			if(isArray(iterable)){
+			if(isFunction(iterable['forEach'])){
+				iterable.forEach(function(v,k){callback(v,k);});
+			} else if(isArray(iterable)){
 				for(var i=0; i<iterable.length; i++){
 					try {
 						callback(iterable[i], i);

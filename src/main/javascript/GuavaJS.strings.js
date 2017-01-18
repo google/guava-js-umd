@@ -5,6 +5,7 @@ GuavaJS.Strings = GuavaJS.Strings || (function(){
 	var isString = GuavaJS.isString;
 	
 	var emptyString = "";
+	var none = "null";
 	
 	var isNullOrEmpty = function(string){
 		if(isNull(string) || string == emptyString){
@@ -39,6 +40,7 @@ GuavaJS.Strings = GuavaJS.Strings || (function(){
 	
 	return {
 		empty: emptyString,
+		none: none,
 		isNullOrEmpty: isNullOrEmpty,
 		nullTo: nullTo,
 		nullToEmpty: nullToEmpty,
