@@ -98,3 +98,23 @@ GuavaJS.Collect.Multimap.ListMultimap = GuavaJS.Collect.Multimap.ListMultimap ||
 	}
 	return GuavaJS.Collect.Multimap._(createFunc);
 });
+GuavaJS.Collect.Multimap.FlatListMultimap = GuavaJS.Collect.Multimap.FlatListMultimap || (function(){
+	var _map = GuavaJS.Collect.Multimap.ListMultimap();
+	var _ = {}
+	for (var key in _map) {
+		_[key] = _map[key];
+	}
+	
+	_.get = function(key){
+		var v = _map.get(key);
+		if(v.length == 1){
+			return v[0];
+		} else if(v.length ==0){
+			return null;
+		} else {
+			return v;
+		}
+	}
+	
+	return _;
+});
