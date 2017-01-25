@@ -18,7 +18,7 @@ GuavaJS.Net.Uri = GuavaJS.Net.Uri || (function(){
 	var Joiner = Strings.Joiner;
 	var Splitter = Strings.Splitter;
 	
-	var Params = (function(){
+	var QueryString = (function(){
 		var _joiner = Joiner.on('&').withKeyValueSeparator("=").skipNulls();
 		var _splitter = Splitter.on('&').withKeyValueSeparator("=").trimResults().omitEmptyStrings();
 		
@@ -75,17 +75,72 @@ GuavaJS.Net.Uri = GuavaJS.Net.Uri || (function(){
 		}
 	})();
 	
-	var Uri = (function(){
+	var _Uri = (function(base, scheme, host, path, queryString){
+		return {
+			scheme:scheme,
+			host:host,
+			path:path,
+			base:base,
+			queryString:queryString,
+			queryStr:queryString,
+			query:queryString,
+			toString: function(){
+				var s = base;
+				if(queryString.size() > 0){
+					s += "?"+ queryString.toString();
+				}
+				
+				return s;
+			}
+		}
+	});
+	
+	var create = function(uri){
+		var base = "";
+		var scheme = "";
+		var host = "";
+		var path = "";
+		var queryString = "";
 		
-		var _Uri = (function(){
-			
-		});
+		var split = uri.split('//', 2);
+		if(split.length == 2){
+			scheme = split[0].replace(":", "");
+			uri = split[1];
+		}
 		
+		split = uri.split('/');
+		if(split.length >= 2){
+			host = split.shift();
+			var subsplit = split.join('/').split('?');
+			if(subsplit.length == 2){
+				path = subsplit[0];
+				queryString = subsplit[1];
+			} else {
+				path = subsplit[0];
+			}
+		} else {
+			var subsplit = uri.split('?');
+			if(subsplit.length == 2){
+				host = subsplit[0];
+				queryString = subsplit[1];
+			} else {
+				host = uri;
+			}
+		}
 		
-	})();
+		if(!Strings.isNullOrEmpty(scheme)){
+			base += scheme +"://";
+		}
+		base += host;
+		if(!Strings.isNullOrEmpty(path)){
+			base += "/"+path;
+		}
+		
+		return _Uri(base, scheme, host, path, QueryString.fromString(queryString));
+	}
 	
 	return {
-		Uri: Uri,
-		Params: Params
+		create: create,
+		QueryString: QueryString
 	};
 })();
