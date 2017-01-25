@@ -24,6 +24,7 @@ describe("URI", function(){
 				
 				expect(u).not.toBeNull();
 				expect(u.host).toEqual("example.com");
+				expect(u.queryString).not.toBeNull();
 				expect(u.toString()).toEqual(uri);
 			});
 			it("Scheme://Host", function(){
@@ -33,6 +34,7 @@ describe("URI", function(){
 				expect(u).not.toBeNull();
 				expect(u.host).toEqual("example.com");
 				expect(u.scheme).toEqual("http");
+				expect(u.queryString).not.toBeNull();
 				expect(u.toString()).toEqual(uri);
 			});
 			it("Scheme://Host/Path", function(){
@@ -43,6 +45,7 @@ describe("URI", function(){
 				expect(u.host).toEqual("example.com");
 				expect(u.scheme).toEqual("http");
 				expect(u.path).toEqual("something/somethingelse");
+				expect(u.queryString).not.toBeNull();
 				expect(u.toString()).toEqual(uri);
 			});
 		});
@@ -53,6 +56,7 @@ describe("URI", function(){
 				
 				expect(u).not.toBeNull();
 				expect(u.host).toEqual("example.com");
+				expect(u.queryString).not.toBeNull();
 				expect(u.queryString.get('test')).toEqual("value1");
 				expect(u.toString()).toEqual(uri);
 			});
@@ -63,6 +67,7 @@ describe("URI", function(){
 				expect(u).not.toBeNull();
 				expect(u.host).toEqual("example.com");
 				expect(u.scheme).toEqual("http");
+				expect(u.queryString).not.toBeNull();
 				expect(u.queryString.get('test')).toEqual("value1");
 				expect(u.toString()).toEqual(uri);
 			});
@@ -74,6 +79,7 @@ describe("URI", function(){
 				expect(u.host).toEqual("example.com");
 				expect(u.scheme).toEqual("http");
 				expect(u.path).toEqual("something/somethingelse");
+				expect(u.queryString).not.toBeNull();
 				expect(u.queryString.get('test')).toEqual("value1");
 				expect(u.toString()).toEqual(uri);
 			});
