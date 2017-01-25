@@ -12,6 +12,10 @@ module.exports = function(grunt) {
 	var numbersSrc = [srcDir+"GuavaJS.js", srcDir+"GuavaJS.numbers.js"];
 	var booleansSrc = [srcDir+"GuavaJS.js", srcDir+"GuavaJS.booleans.js"];
 	var futuresSrc = [srcDir+"GuavaJS.js", srcDir+"GuavaJS.collect.js", srcDir+"GuavaJS.collect.iterables.js", srcDir+"GuavaJS.concurrent.js", srcDir+"GuavaJS.concurrent.futures.js"];
+	var netUriSrc = [srcDir+"GuavaJS.js", 
+	                 srcDir+"GuavaJS.collect.js", srcDir+"GuavaJS.collect.iterables.js", srcDir+"GuavaJS.collect.multimap.js", 
+	                 srcDir+"GuavaJS.strings.js", srcDir+"GuavaJS.strings.charmatcher.js", srcDir+"GuavaJS.strings.joiner.js", srcDir+"GuavaJS.strings.splitter.js", 
+	                 srcDir+"GuavaJS.net.js", srcDir+"GuavaJS.net.uri.js"];
 	
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -74,6 +78,12 @@ module.exports = function(grunt) {
 				src: futuresSrc,
 				options: {
 					specs: [testDir+"GuavaJS.concurrent.futures.spec.js"]
+				}
+			},
+			netUri: {
+				src: netUriSrc,
+				options: {
+					specs: [testDir+"GuavaJS.net.uri.spec.js"]
 				}
 			}
 		},

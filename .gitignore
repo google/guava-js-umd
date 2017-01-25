@@ -4,3 +4,4 @@ bower_components
 .npmignore
 .project
 .settings/
+.DS_Store

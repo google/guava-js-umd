@@ -6,6 +6,9 @@ var GuavaJS = GuavaJS || (function(){
 	var isArray = function(obj){
 		return !isNull(obj) && Array.isArray(obj);
 	}
+	var isIterable = function(obj){
+		return isFunction(obj['forEach']) || isArray(obj) || isObject(obj);
+	}
 	
 	var isString = function(str){
 		return (typeof str == "string" || str instanceof String);
@@ -67,6 +70,7 @@ var GuavaJS = GuavaJS || (function(){
 		isNumber: isNumber,
 		isBoolean: isBoolean,
 		isFunction: isFunction,
+		isIterable: isIterable,
 		
 		randomInt: randomInt,
 		randomIntExclusive: randomIntExclusive,

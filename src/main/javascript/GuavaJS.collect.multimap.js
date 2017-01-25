@@ -5,6 +5,7 @@ GuavaJS.Collect.Multimap = GuavaJS.Collect.Multimap || {};
 GuavaJS.Collect.Multimap._ = GuavaJS.Collect.Multimap._ || (function(createNewFunc){
 	var Iterables = GuavaJS.Collect.Iterables;
 	var isNull = GuavaJS.isNull;
+	var isIterable = GuavaJS.isIterable;
 	
 	var values = {};
 	
@@ -84,7 +85,14 @@ GuavaJS.Collect.Multimap._ = GuavaJS.Collect.Multimap._ || (function(createNewFu
 		putAll: putAll,
 		pushAll: putAll,
 		size: function(){return Iterables.size(values);},
-		forEach: function(callback){Iterables.iterate(values, callback);}
+		forEach: function(callback){Iterables.iterate(values, callback);},
+		extend: function(map){Iterables.iterate(map, function(val, key){
+			if(isIterable(val)){
+				putAll(key, val);
+			} else {
+				put(key, val);
+			}
+		})}
 	}
 	
 	//TODO: Add Symbol.iterator declaration
