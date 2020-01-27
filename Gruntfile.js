@@ -108,11 +108,30 @@ module.exports = function(grunt) {
 			    dest: 'build/GuavaJS.all.js',
 			}
 		},
+		umd : {
+			combined : {
+				options : {
+					src: 'build/GuavaJS.all.js',
+					dest: 'build/GuavaJS.umd.js',
+					objectToExport: 'GuavaJS'
+				}
+			}
+		},
 		uglify : {
 			combined : {
 				files : [{
 					expand: true,
 					src: 'build/GuavaJS.all.js',
+					dest: 'build',
+					ext: '.min.js',
+					extDot: 'last',
+					flatten: true
+				}]
+			},
+			combined_umd : {
+				files : [{
+					expand: true,
+					src: 'build/GuavaJS.umd.js',
 					dest: 'build',
 					ext: '.min.js',
 					extDot: 'last',
@@ -135,9 +154,10 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-jasmine');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-umd');
 
-	grunt.registerTask('default', ['jasmine', 'concat', 'uglify']);
-	grunt.registerTask('build', ['jasmine', 'concat', 'uglify']);
-	grunt.registerTask('build-notest', ['concat', 'uglify']);
+	grunt.registerTask('default', ['jasmine', 'concat', 'umd', 'uglify']);
+	grunt.registerTask('build', ['jasmine', 'concat', 'umd', 'uglify']);
+	grunt.registerTask('build-notest', ['concat', 'umd', 'uglify']);
 	grunt.registerTask('test', ['jasmine']);
 }

@@ -6,7 +6,8 @@
 		"grunt-cli": "*",
 		"grunt-contrib-concat": "*",
 		"grunt-contrib-uglify": "*",
-		"grunt-contrib-jasmine": "*"
+		"grunt-contrib-jasmine": "*",
+		"grunt-umd": "*"
 	},
 	"scripts": {
 		"test": "grunt test",
