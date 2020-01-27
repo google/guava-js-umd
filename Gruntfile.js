@@ -87,7 +87,38 @@ module.exports = function(grunt) {
 				}
 			}
 		},
+		concat : {
+			all : {
+			    src: [
+				    'src/main/javascript/GuavaJS.js',
+				    'src/main/javascript/GuavaJS.booleans.js',
+				    'src/main/javascript/GuavaJS.collect.js',
+				    'src/main/javascript/GuavaJS.collect.multimap.js',
+				    'src/main/javascript/GuavaJS.concurrent.js',
+				    'src/main/javascript/GuavaJS.concurrent.futures.js',
+				    'src/main/javascript/GuavaJS.logging.js',
+				    'src/main/javascript/GuavaJS.numbers.js',
+				    'src/main/javascript/GuavaJS.strings.js',
+				    'src/main/javascript/GuavaJS.strings.charmatcher.js',
+				    'src/main/javascript/GuavaJS.strings.joiner.js',
+				    'src/main/javascript/GuavaJS.strings.splitter.js',
+				    'src/main/javascript/GuavaJS.net.js',
+				    'src/main/javascript/GuavaJS.net.uri.js',
+			    ],
+			    dest: 'build/GuavaJS.all.js',
+			}
+		},
 		uglify : {
+			combined : {
+				files : [{
+					expand: true,
+					src: 'build/GuavaJS.all.js',
+					dest: 'build',
+					ext: '.min.js',
+					extDot: 'last',
+					flatten: true
+				}]
+			},
 			core_files : {
 				files : [{
 					expand: true,
@@ -101,11 +132,12 @@ module.exports = function(grunt) {
 		}
 	});
 
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-jasmine');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 
-	grunt.registerTask('default', ['jasmine', 'uglify']);
-	grunt.registerTask('build', ['jasmine', 'uglify']);
-	grunt.registerTask('build-notest', ['uglify']);
+	grunt.registerTask('default', ['jasmine', 'concat', 'uglify']);
+	grunt.registerTask('build', ['jasmine', 'concat', 'uglify']);
+	grunt.registerTask('build-notest', ['concat', 'uglify']);
 	grunt.registerTask('test', ['jasmine']);
 }

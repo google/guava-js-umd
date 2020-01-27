@@ -4,6 +4,7 @@
 	"devDependencies": {
 		"grunt": "*",
 		"grunt-cli": "*",
+		"grunt-contrib-concat": "*",
 		"grunt-contrib-uglify": "*",
 		"grunt-contrib-jasmine": "*"
 	},
