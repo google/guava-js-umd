@@ -1,17 +1,13 @@
-# GuavaJS
-A Javascript library that supplies a lot of the same great functionality and tools Java developers have been used too with Guava. All packaged up into a nice set of Javascript files for use within Webpages and/or NodeJS code.
+# GuavaJS-UMD
 
-![build_status](https://api.travis-ci.org/nerdynick/guava-js.svg "Build Status")
+GuavaJS-UMD is a fork of [GuavaJS](https://github.com/nerdynick/guava-js) that was created for [postcss-rename](https://github.com/google/postcss-rename) to use in place of GuavaJS.
 
-## Installing GuavaJS
-GuavaJS is setup to allow for the use of Bower. Each versioned release will be tagged to allow you to use the version of your choosing.
+This is because GuavaJS 1.1.1, the current version at time of writing, isn't available on npm, and GuavaJS 1.1.1 isn't designed for a CommonJS environment.
 
-## Javascript compatability
-GuavaJS is designed to be backward compatable with older browsers but also intends to allow for EC6 features as long as doing so doesn't create issues with the legacy support. As some of the goals is to be a sort of polyfill collection minus the amount of overhead to do so.
+Wrapping GuavaJS as a [UMD module](https://github.com/umdjs/umd) was chosen as the approach to resolve the latter problem.
 
-### Hows it packaged?
+You are welcome to use GuavaJS-UMD should you find it useful, but please be aware this fork doesn't intend to accept new features nor fix bugs in the GuavaJS library. (It would be in scope to patch upstream changes, however.)
 
+## Disclaimer
 
-
-## License
-GuavaJS is licensed under the Apache 2.0 license.
+This is not an officially supported Google product.

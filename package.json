@@ -1,6 +1,6 @@
 {
-	"name": "guava-js",
-	"version":"1.1.0",
+	"name": "guava-js-umd",
+	"version":"1.1.1",
 	"devDependencies": {
 		"grunt": "*",
 		"grunt-cli": "*",
