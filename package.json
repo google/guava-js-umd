@@ -1,6 +1,10 @@
 {
 	"name": "guava-js-umd",
 	"version":"1.1.1",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/google/guava-js-umd.git"
+	},
 	"main": "build/GuavaJS.umd.js",
 	"devDependencies": {
 		"grunt": "*",
